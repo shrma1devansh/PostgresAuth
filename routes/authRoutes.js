@@ -5,7 +5,7 @@ import {login} from "../controllers/loginControllers.js";
 const router = express.Router();
 
 router.route("/register").post( register);
-router.route("/login").post(login)
+router.route("/Login").post(login)
 
 
 export default router;

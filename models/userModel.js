@@ -4,15 +4,25 @@ const createUser = async ({
     name,
     email,
     phone,
-    password,
-    role = "user"
+    password = null,
+    role = "user",
+    provider = "local",
+    microsoft_id = null
 }) => {
 
     const query = `
         INSERT INTO users
-        (name, email, phone, password, role)
-        VALUES ($1,$2,$3,$4,$5)
-        RETURNING id,name,email,phone,role;
+        (
+            name,
+            email,
+            phone,
+            password,
+            role,
+            provider,
+            microsoft_id
+        )
+        VALUES ($1,$2,$3,$4,$5,$6,$7)
+        RETURNING *;
     `;
 
     const values = [
@@ -20,14 +30,15 @@ const createUser = async ({
         email,
         phone,
         password,
-        role
+        role,
+        provider,
+        microsoft_id
     ];
 
     const result = await pool.query(query, values);
 
     return result.rows[0];
 };
-
 const findUserByEmail = async (email) => {
 
     const result = await pool.query(
@@ -37,8 +48,18 @@ const findUserByEmail = async (email) => {
 
     return result.rows[0];
 };
+const findUserByMicrosoftId = async (microsoftId) => {
+
+    const result = await pool.query(
+        "SELECT * FROM users WHERE microsoft_id = $1",
+        [microsoftId]
+    );
+
+    return result.rows[0];
+};
 
 export {
     createUser,
-    findUserByEmail
+    findUserByEmail,
+     findUserByMicrosoftId
 };
