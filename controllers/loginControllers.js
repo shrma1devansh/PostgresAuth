@@ -17,7 +17,7 @@ export const login = async (req, res) => {
 
     // Check whether user exists
     const user = await findUserByEmail(email);
-
+    console.log(user);
     if (!user) {
       return res.status(404).json({
         success: false,

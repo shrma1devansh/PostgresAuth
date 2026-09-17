@@ -20,6 +20,7 @@
     "jsonwebtoken": "^9.0.3",
     "passport": "^0.7.0",
     "passport-azure-ad": "^4.3.5",
+    "passport-saml": "^3.2.4",
     "pg": "^8.23.0",
     "uuid": "^14.0.2"
   },

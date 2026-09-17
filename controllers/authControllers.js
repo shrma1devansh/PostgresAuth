@@ -4,7 +4,7 @@ import { createUser, findUserByEmail } from "../models/userModel.js";
 const register = async (req, res) => {
   try {
     const { name, email, phone, password } = req.body;
-   console.log("Received registration data:", req.body);
+   
     // 1. Validate input
     if (!name || !email || !phone || !password) {
       return res.status(400).json({
