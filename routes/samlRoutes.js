@@ -13,24 +13,40 @@ router.get(
     "/login",
     passport.authenticate("saml")
 );
+console.log("login redirected")
 
-// our call back url where user will be redirected to after login
-router.post(
-    "/callback",
-    passport.authenticate("saml",{
-        failureRedirect:"/auth/saml/failure",
-        session:false
-    }),async (req, res) => {
-        console.log(req.user);
 
-        res.json(req.user);
-    }
-);
+// router.post("/login/callback", (req, res, next) => {
+//     passport.authenticate("saml", (err, user, info) => {
 
-router.post(
-    "/register",
-    registerMicrosoftUser
-);
+     
+//         console.log("ERR:", err);
+//         console.log("USER:", user);
+//         console.log("INFO:", info);
+
+//         if (err) {
+//             return res.status(500).json(err);
+//         }
+
+//         if (!user) {
+//             return res.status(401).json(info);
+//         }
+
+//         req.user = user;
+
+//         next();
+
+//     })(req, res, next);
+
+// }, samlCallback);
+
+
+
+// router.post(
+//     "/register",
+//     registerMicrosoftUser
+// );
+
 
 router.get("/failure",(req,res)=>{
 

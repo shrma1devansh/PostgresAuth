@@ -17,14 +17,12 @@ passport.use(
        // xml is recieved from the SAML provider and is used to verify the authenticity of the SAML response
       callbackUrl: process.env.SAML_CALLBACK_URL,
 
+
        // 4. contains signature and certificate information used to verify the authenticity of the SAML response
       cert: process.env.SAML_CERT,
+      // protocol: "https://"
+     
 
-      // We expect the user's email as the NameID
-    //   identifierFormat:
-    //     process.env.SAML_IDENTIFIER_FORMAT ||
-    //     "urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress",
-    // },
     },
     
     async (profile, done) => {
@@ -43,7 +41,8 @@ passport.use(
 passport.serializeUser((user, done) => {
   done(null, user);
 });
-// when connection is build during logging in this session are required to maintain the connection and till user is authenticated
+// when connection is build during logging in this session,
+//  are required to maintain the connection and till user is authenticated
 // Deserialize user from the session
 passport.deserializeUser((user, done) => {
   done(null, user);

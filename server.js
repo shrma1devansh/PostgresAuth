@@ -1,8 +1,7 @@
-import express from "express";
+import express, { urlencoded } from "express";
 import dotenv from "dotenv";
 import "./config/db.js";
 import cors from "cors";
-// import session from "express-session";
 import userRoutes from "./routes/userRoutes.js";
 import authRoutes from "./routes/authRoutes.js";
 import passport from "passport";
@@ -15,6 +14,9 @@ dotenv.config();
 const app = express();
 app.use(cors());
 app.use(express.json());
+app.use(express.urlencoded({extended:true}))
+
+
 // creates authentication middleware for passport so saml can relate to redirection flow and callback flow
 
 
@@ -31,7 +33,7 @@ app.use(passport.session());
 
 app.use("/users", userRoutes);
 app.use("/auth", authRoutes);
-app.use('/auth/saml',samlRoutes)
+app.use("/TicketSumm",samlRoutes)
 
 
 const PORT = process.env.PORT || 5000;

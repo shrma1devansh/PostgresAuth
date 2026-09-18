@@ -17,7 +17,7 @@ const registerUser = async (req, res) => {
             name,
             email,
             phone,
-            password, // You might want to handle password differently
+            password, 
             role: "user"
         });
         console.log("User Created:", user);

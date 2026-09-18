@@ -22,26 +22,16 @@ export const registerMicrosoftUser = async (req, res) => {
         if (existingUser) {
 
             return res.status(409).json({
-
                 success:false,
-
                 message:"User already exists"
-
             });
-
         }
-
         const user =
             await createMicrosoftUser({
-
                 name,
-
                 email,
-
                 phone,
-
                 microsoft_id,
-
                 provider:"microsoft"
 
             });
@@ -50,13 +40,9 @@ export const registerMicrosoftUser = async (req, res) => {
             generateToken(user);
 
         return res.status(201).json({
-
             success:true,
-
             message:"Registration Successful",
-
             token,
-
             user
 
         });
@@ -64,20 +50,13 @@ export const registerMicrosoftUser = async (req, res) => {
     }
 
     catch(error){
-
         console.log(error);
-
         return res.status(500).json({
-
             success:false,
-
             message:"Registration Failed"
-
         });
-
     }
-
-};
+}
 
 
 const samlCallback = async (req, res) => {
