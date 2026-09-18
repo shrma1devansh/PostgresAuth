@@ -8,7 +8,7 @@ import authRoutes from "./routes/authRoutes.js";
 import passport from "passport";
 import samlRoutes from "./routes/samlRoutes.js"
 import session from "express-session";
-
+import "./config/passport.js";
 dotenv.config();
 
 
